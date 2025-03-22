@@ -4,50 +4,47 @@
             {{ __('Landing Page') }}
         </h2>
     </x-slot>
-    <div class="max-w-2xl mx-auto bg-white p-6 shadow-lg rounded-lg">
-    <h2 class="text-2xl font-semibold mb-4">Subir Imagen</h2>
+    <div class="py-12">
+        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
+            <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
+                <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
+                    <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+                        <tr>
+                            <th scope="col" class="px-6 py-3">Nombre</th>
+                            <th scope="col" class="px-6 py-3">Mensaje de bienvenida</th>
+                            <th scope="col" class="px-6 py-3">Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr class="odd:bg-white odd:dark:bg-gray-900 even:bg-gray-50 even:dark:bg-gray-800 border-b dark:border-gray-700 border-gray-200">
+                            <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                                @if($hero)
+                                    {{ $hero->user_name }}
+                                @else
+                                    no se ha registado aún
+                                @endif
+                            </th>
+                            <td class="px-6 py-4">
+                                @if($hero)
+                                    {{ $hero->welcome_text }}
+                                @else
+                                    no se ha registado aún
+                                @endif
+                            </td>
+                            <td class="px-6 py-4">
+                                @if($hero)
+                                    <a href="#" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Edit</a>
+                                @else
+                                    no se ha registado aún
+                                @endif
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
 
-    @if(session('success'))
-        <div class="bg-green-200 text-green-700 p-3 rounded-md mb-4">
-            {{ session('success') }}
-        </div>
-    @endif
 
-    <form action="{{ route('landingpage.store') }}" method="POST" enctype="multipart/form-data" class="space-y-4">
-        @csrf
-        <div>
-            <label for="name" class="block font-medium text-gray-700">Nombre:</label>
-            <input type="text" id="name" name="name" required
-                class="w-full border border-gray-300 p-2 rounded-lg focus:ring-2 focus:ring-blue-400 focus:outline-none">
-        </div>
-
-        <div>
-            <label for="path" class="block font-medium text-gray-700">Seleccionar Imagen:</label>
-            <input type="file" id="path" name="path" required
-                class="w-full border border-gray-300 p-2 rounded-lg focus:ring-2 focus:ring-blue-400 focus:outline-none">
-        </div>
-
-        <button type="submit"
-            class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-lg">
-            Guardar Imagen
-        </button>
-    </form>
-
-    <h3 class="text-xl font-semibold mt-6">Imágenes Guardadas</h3>
-    <div class="grid grid-cols-3 gap-4 mt-4">
-        @foreach ($imgs as $img)
-            <div class="border rounded-lg p-2">
-                <img src="{{ asset('storage/landing/' . $img->path) }}" alt="{{ $img->name }}" class="w-full h-32 object-cover rounded-md">
-                <p class="text-center text-gray-700 mt-2">{{ $img->name }}</p>
+                
             </div>
-            <div class="flex justify-center mt-4">
-                <form action="{{ route('landingpage.destroy', $img->id) }}" method="POST" onsubmit="return confirm('¿Seguro que deseas eliminar esta imagen?');" >
-                    @csrf
-                    @method('DELETE')
-                    <button type="submit" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Eliminar</button>
-                </form>
-            </div>
-        @endforeach
+        </div>
     </div>
-</div>
 </x-app-layout>

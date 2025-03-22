@@ -7,8 +7,9 @@ use App\Models\FormProject;
 use App\Models\FormAbout;
 use App\Models\ContactPublic;
 use Illuminate\Support\Facades\RateLimiter;
-use App\Models\user;
+use App\Models\User;
 use App\Models\ImgPublic;
+use App\Models\HeroHome;
 
 class PublicController extends Controller
 {
@@ -18,7 +19,8 @@ class PublicController extends Controller
         $abouts = FormAbout::first();
         $user = user::first();
         $imgs = ImgPublic::all();
-        return view('home', compact('projects', 'abouts', 'user', 'imgs'));
+        $hero = HeroHome::first();
+        return view('home', compact('projects', 'abouts', 'user', 'imgs' , 'hero'));
     }
 
     public function store (Request $request)
