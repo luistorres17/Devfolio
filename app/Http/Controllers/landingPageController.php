@@ -4,13 +4,15 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\ImgPublic;
+use App\Models\HeroHome;
 
 class landingPageController extends Controller
 {
     public function index()
     {
         $imgs = ImgPublic::all();
-        return view('landingpage', compact('imgs'));
+        $hero = HeroHome::first();
+        return view('landingpage', compact('imgs', 'hero'));
     }
 
     public function store(Request $request)
