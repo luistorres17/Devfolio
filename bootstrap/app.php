@@ -12,7 +12,7 @@ return Application::configure(basePath: dirname(__DIR__))
     )
     ->withMiddleware(function (Middleware $middleware) {
         //
-        $middleware->append(TrackVisits::class);
+        //$middleware->append(TrackVisits::class); deshabilitado
     })
     ->withExceptions(function (Exceptions $exceptions) {
         //
