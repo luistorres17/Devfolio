@@ -43,8 +43,20 @@
         <section class="bg-white dark:bg-gray-900 h-screen " id ="home" >
             <div class="grid max-w-screen-xl h-full px-4 py-8 mx-auto lg:gap-8 xl:gap-0 lg:py-16 lg:grid-cols-12 items-center reveal">
                 <div class="mr-auto place-self-center lg:col-span-7">
-                    <h1 class="max-w-2xl mb-4 text-4xl font-extrabold tracking-tight leading-none md:text-5xl xl:text-6xl dark:text-white">Hola soy {{ $user->name }} </h1>
-                    <p class="max-w-2xl mb-6 font-light text-gray-500 lg:mb-8 md:text-lg lg:text-xl dark:text-gray-400">Estudiante de Ingenieria en Computación de Octavo Semestre</p>
+                    <h1 class="max-w-2xl mb-4 text-4xl font-extrabold tracking-tight leading-none md:text-5xl xl:text-6xl dark:text-white">
+                        @if($hero)
+                            Hola soy {{ $user->name }} 
+                        @else
+                            sin datos en la tabla de la db
+                        @endif
+                    </h1>
+                    <p class="max-w-2xl mb-6 font-light text-gray-500 lg:mb-8 md:text-lg lg:text-xl dark:text-gray-400">
+                        @if($hero)
+                            {{ $hero->welcome_text }}
+                        @else
+                            sin datos en la tabla de la db
+                        @endif
+                    </p>
                     <a href="#proyectos" class="inline-flex items-center justify-center px-5 py-3 mr-3 text-base font-medium text-center text-white rounded-lg bg-primary-700 hover:bg-primary-800 focus:ring-4 focus:ring-primary-300 dark:focus:ring-primary-900">
                         Ver Proyectos
                         <svg class="w-5 h-5 ml-2 -mr-1" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clip-rule="evenodd"></path></svg>
@@ -119,19 +131,23 @@
             Proyectos
         </h2>
         <ol class="relative border-s border-gray-200 dark:border-gray-700">
-            @foreach ($projects as $project)                  
-                <li class="mb-10 ms-4">
-                    <div class="absolute w-3 h-3 bg-gray-200 rounded-full mt-1.5 -start-1.5 border border-white dark:border-gray-900 dark:bg-gray-700"></div>
-                    <time class="mb-1 text-sm font-normal leading-none text-gray-400 dark:text-gray-500">{{ $project->fecha_realizacion }}</time>
-                    <h3 class="text-lg font-semibold text-gray-900 dark:text-white text-justify">{{ $project->nameProject }}</h3>
-                    <p class="text-base font-normal text-gray-500 dark:text-gray-400 text-justify">{{ $project->descripcion }}</p>
-                    <!-- imagen -->
-                    <div class="flex items-center justify-center">
-                        <img src="{{ $project->image ? asset('storage/' . $project->image) : asset('images/default.png') }}" alt="{{ $project->nameProject }}" class="w-20 h-20 rounded-full object-cover">
-                    </div>
-                    <a href="{{ $project->link_url }}" target="_blank" class="mt-4 text-sm font-semibold text-blue-600 dark:text-blue-500 hover:underline">Ver Proyecto</a>
-                </li>
-            @endforeach
+            @if($projects)
+                @foreach ($projects as $project)                  
+                    <li class="mb-10 ms-4">
+                        <div class="absolute w-3 h-3 bg-gray-200 rounded-full mt-1.5 -start-1.5 border border-white dark:border-gray-900 dark:bg-gray-700"></div>
+                        <time class="mb-1 text-sm font-normal leading-none text-gray-400 dark:text-gray-500">{{ $project->fecha_realizacion }}</time>
+                        <h3 class="text-lg font-semibold text-gray-900 dark:text-white text-justify">{{ $project->nameProject }}</h3>
+                        <p class="text-base font-normal text-gray-500 dark:text-gray-400 text-justify">{{ $project->descripcion }}</p>
+                        <!-- imagen -->
+                        <div class="flex items-center justify-center">
+                            <img src="{{ $project->image ? asset('storage/' . $project->image) : asset('images/default.png') }}" alt="{{ $project->nameProject }}" class="w-20 h-20 rounded-full object-cover">
+                        </div>
+                        <a href="{{ $project->link_url }}" target="_blank" class="mt-4 text-sm font-semibold text-blue-600 dark:text-blue-500 hover:underline">Ver Proyecto</a>
+                    </li>
+                @endforeach
+            @else
+                <p> sin datos en la tabla de la db</p>
+            @endif
         </ol>
     </div>
 </section>
@@ -166,7 +182,7 @@
 
         <footer class="bg-white rounded-lg shadow sm:flex sm:items-center sm:justify-between p-4 sm:p-6 xl:p-8 dark:bg-gray-800 antialiased">
             <p class="mb-4 text-sm text-center text-gray-500 dark:text-gray-400 sm:mb-0">
-                &copy; 2025-2026 . All rights reserved.
+                &copy; 2025-2026 . All rights reserved {{ $user->name }}
             </p>
         </footer>
 

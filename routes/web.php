@@ -32,7 +32,10 @@ Route::middleware('auth')->group(function () {
     Route::delete('/contacto/{id}', [ContactController::class, 'publicdelete'])->name('contacto.publicdelete');
     Route::get('/landingpage', [landingPageController::class, 'index'])->name('landingpage');
     Route::post('/landingpage', [landingPageController::class, 'store'])->name('landingpage.store');
+    Route::post('/landingpage', [landingPageController::class, 'herostore'])->name('landingpage.herostore');
     Route::delete('/landingpage/{id}', [landingPageController::class, 'destroy'])->name('landingpage.destroy');
+    Route::delete('/landingpage/{id}', [landingPageController::class, 'herodestroy'])->name('landingpage.herodestroy');
+    Route::patch('/landingpage/{id}', [landingPageController::class, 'heroupdate'])->name('landingpage.heroupdate');
 
 });
 require __DIR__.'/auth.php';
