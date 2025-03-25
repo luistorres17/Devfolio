@@ -208,7 +208,11 @@
                     <div class="bg-blue-500 text-white rounded-2xl shadow-lg p-6 w-64 text-center">
                         <h2 class="text-xl font-bold">Visitas al sitio</h2>
                         <p class="text-3xl font-extrabold mt-2">
-                            {{ 0 }}
+                            @if($visits)
+                                {{ $visits}}
+                            @else
+                                {{ 0 }}
+                            @endif
                         </p>
                     </div>
                 </div>

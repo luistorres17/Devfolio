@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\FormProject;
 use App\Models\FormAbout;
 use App\Models\ContactPublic;
+use App\Models\Visit;
 
 class DashboardController extends Controller
 {
@@ -14,7 +15,8 @@ class DashboardController extends Controller
         $formprojects = FormProject::all(); // Datos de proyectos
         $formabouts = FormAbout::first(); // Datos de otra tabla
         $contactpublics = ContactPublic::all(); // Datos de otra tabla
+        $visits = Visit::count();
 
-        return view('dashboard', compact('formprojects', 'formabouts', 'contactpublics'));
+        return view('dashboard', compact('formprojects', 'formabouts', 'contactpublics' , 'visits'));
     }
 }
