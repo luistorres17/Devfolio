@@ -12,5 +12,6 @@ class ImgPublic extends Model
     Protected $fillable = [
         'name',
         'path',
+        'alt',
     ];
 }
