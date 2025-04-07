@@ -7,7 +7,8 @@ use App\Http\Controllers\FormProjectController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\PublicController;
-use App\Http\Controllers\landingPageController;
+use App\Http\Controllers\HeroController;
+use App\Http\Controllers\ImgController;
 
 Route::get('/', function () {
     return view('home');
@@ -30,12 +31,13 @@ Route::middleware('auth')->group(function () {
     Route::get('/contacto', [ContactController::class, 'index'])->name('contacto');
     Route::post('/contacto', [ContactController::class, 'privatestore'])->name('contacto.privatestore');
     Route::delete('/contacto/{id}', [ContactController::class, 'publicdelete'])->name('contacto.publicdelete');
-    Route::get('/landingpage', [landingPageController::class, 'index'])->name('landingpage');
-    Route::post('/landingpage', [landingPageController::class, 'store'])->name('landingpage.store');
-    Route::post('/landingpage', [landingPageController::class, 'herostore'])->name('landingpage.herostore');
-    Route::delete('/landingpage/{id}', [landingPageController::class, 'destroy'])->name('landingpage.destroy');
-    Route::delete('/landingpage/{id}', [landingPageController::class, 'herodestroy'])->name('landingpage.herodestroy');
-    Route::patch('/landingpage/{id}', [landingPageController::class, 'heroupdate'])->name('landingpage.heroupdate');
+    Route::get('/landingpage', [HeroController::class, 'index'])->name('landingpage');
+    Route::post('/landingpage', [HeroController::class, 'herostore'])->name('landingpage.herostore');
+    Route::patch('/landingpage/{id}', [HeroController::class, 'heroupdate'])->name('landingpage.heroupdate');
+    Route::delete('/landingpage/{id}', [HeroController::class, 'herodestroy'])->name('landingpage.herodestroy');
+    Route::get('/imghero', [ImgController::class, 'index'])->name('imghero');
+    Route::post('/imghero', [ImgController::class, 'store'])->name('imghero.store');
+    Route::delete('/imghero/{id}', [ImgController::class, 'destroy'])->name('imghero.destroy');
 
 });
 require __DIR__.'/auth.php';

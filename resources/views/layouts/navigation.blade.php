@@ -10,6 +10,7 @@
                     <a href="{{ route('FormProject.index') }}">
                     <a href="{{ route('contacto') }}">
                     <a href="{{ route('landingpage') }}">
+                    <a href="{{ route('imghero') }}">
                         <x-application-logo class="block h-9 w-auto fill-current text-gray-800" />
                     </a>
                 </div>
@@ -30,6 +31,9 @@
                     </x-nav-link>
                     <x-nav-link :href="route('landingpage')" :active="request()->routeIs('landingpage')">
                         {{ __('Landing Page') }}
+                    </x-nav-link>
+                    <x-nav-link :href="route('imghero')" :active="request()->routeIs('imghero')">
+                        {{ __('img hero') }}
                     </x-nav-link>
                 </div>
             </div>
@@ -98,6 +102,9 @@
             </x-responsive-nav-link>
             <x-responsive-nav-link :href="route('landingpage')" :active="request()->routeIs('landingpage')">
                 {{ __('Landing Page') }}
+            </x-responsive-nav-link>
+            <x-responsive-nav-link :href="route('imghero')" :active="request()->routeIs('imghero')">
+                {{ __('img hero') }}
             </x-responsive-nav-link>
         </div>
 
