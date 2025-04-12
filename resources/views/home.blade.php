@@ -45,7 +45,7 @@
                 <div class="mr-auto place-self-center lg:col-span-7">
                     <h1 class="max-w-2xl mb-4 text-4xl font-extrabold tracking-tight leading-none md:text-5xl xl:text-6xl dark:text-white">
                         @if($hero)
-                            Hola soy {{ $user->name }} 
+                            Hola soy {{ $user->name }}
                         @else
                             sin datos en la tabla de la db
                         @endif
@@ -63,20 +63,20 @@
                     </a>
                     <a href="#contacto" class="inline-flex items-center justify-center px-5 py-3 text-base font-medium text-center text-gray-900 border border-gray-300 rounded-lg hover:bg-gray-100 focus:ring-4 focus:ring-gray-100 dark:text-white dark:border-gray-700 dark:hover:bg-gray-700 dark:focus:ring-gray-800">
                         Contactame
-                    </a> 
+                    </a>
                 </div>
                 <div class="hidden lg:mt-0 lg:col-span-5 lg:flex">
                     <div id="gallery" class="relative w-full" data-carousel="slide">
                         <!-- Carousel wrapper -->
                         <div class="relative h-56 overflow-hidden rounded-lg md:h-96">
                             <!-- Item 1 -->
-                            
+
                             @foreach ($imgs as $img)
                                 <div class="relative h-56 overflow-hidden rounded-lg md:h-96" data-carousel-item>
-                                    <img src="{{ asset('storage/landing/' . $img->path) }}" alt="{{$img -> alt}}" class="absolute block w-full h-full transition-transform duration-700 ease-in-out" alt="{{ $img->alt }}">
+                                    <img src="{{ asset('storage/landing/' . $img->path) }}" alt="{{$img -> alt}}" class="absolute block w-full h-full transition-transform duration-700 ease-in-out" >
                                 </div>
                             @endforeach
-                            
+
                         </div>
                         <!-- Slider controls -->
                         <button type="button" class="absolute top-0 start-0 z-30 flex items-center justify-center h-full px-4 cursor-pointer group focus:outline-none" data-carousel-prev>
@@ -96,7 +96,7 @@
                             </span>
                         </button>
                     </div>
-                </div>                
+                </div>
             </div>
         </section>
 
@@ -132,7 +132,7 @@
                 <h3 class="text-2xl font-semibold text-gray-800 mb-2">
                     Mis perfiles de Contacto
                 </h3>
-                <ul class="list-disc pl-5 space-y-2 text-gray-600 text-justify" ">
+                <ul class="list-disc pl-5 space-y-2 text-gray-600 text-justify ">
                     <li>
                         @if($abouts)
                             <a href="{{ $abouts->github }}" target="_blank" class="text-blue-600 dark:text-blue-500 hover:underline">Github</a>
@@ -161,7 +161,7 @@
         </h2>
         <ol class="relative border-s border-gray-200 dark:border-gray-700">
             @if($projects)
-                @foreach ($projects as $project)                  
+                @foreach ($projects as $project)
                     <li class="mb-10 ms-4">
                         <div class="absolute w-3 h-3 bg-gray-200 rounded-full mt-1.5 -start-1.5 border border-white dark:border-gray-900 dark:bg-gray-700"></div>
                         <time class="mb-1 text-sm font-normal leading-none text-gray-400 dark:text-gray-500">{{ $project->fecha_realizacion }}</time>
@@ -181,7 +181,7 @@
     </div>
 </section>
 
-        
+
         <section class="bg-white dark:bg-gray-900 h-screen " id ="contacto" >
             <div class="max-w-screen-xl h-full px-4 py-8 mx-auto lg:gap-8 xl:gap-0 lg:py-16 lg:grid-cols-12 items-center reveal">
                 <h2 class="mb-4 text-4xl tracking-tight font-extrabold text-center text-gray-900 dark:text-white">Contactame</h2>

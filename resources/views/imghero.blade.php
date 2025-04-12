@@ -5,31 +5,39 @@
         </h2>
     </x-slot>
     <div class="py-12">
-            <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-
-                <div class="p-6 text-gray-900 ">
-                    <form action="{{ route('imghero.store') }}" method="POST" enctype="multipart/form-data" class="max-w-md mx-auto grid grid-cols-3 gap-4">
-                        @csrf
-                        <div class="mb-5 col-span-3">
-                            <label for="name" class="block mb-2 text-sm font-medium text-gray-900">Nombre:</label>
-                            <input id="name" type="text" name="name" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" placeholder="Nombre">
-                        </div>
-                        <div class="mb-5 col-span-2">
-                            <label for="path" cclass="block text-gray-700">Path:</label>
-                            <input id="path" type="file" name="path" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5">
-                        </div>
-                        <div class="mb-5 col-span-1">
-                            <label for="alt" class="block mb-2 text-sm font-medium text-gray-900">Alt:</label>
-                            <input id="alt" type="text" name="alt" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" placeholder="Alt">
-                        </div>
-                        <div class="mb-5 col-span-4">
-                            <button type="submit" class="px-4 py-2 bg-green-500 text-white rounded">Enviar</button>
-                        </div>
-                    </form>
-                </div>
-                
+        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
+            <div class="p-6 text-gray-900">
+                <form action="{{ route('imghero.store') }}" method="POST" enctype="multipart/form-data" class="max-w-md mx-auto grid grid-cols-3 gap-4">
+                    @csrf
+    
+                    <div class="mb-5 col-span-3">
+                        <label for="name" class="block mb-2 text-sm font-medium text-gray-900">Nombre:</label>
+                        <input id="name" type="text" name="name" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" placeholder="Nombre" required>
+                    </div>
+    
+                    <div class="mb-5 col-span-2">
+                        <label for="path" class="block text-sm font-medium text-gray-900 mb-2">Imagen (.webp solamente):</label>
+                        <input id="path" type="file" name="path" accept=".webp" required
+                               class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5">
+                        <p class="text-sm text-gray-500 mt-1">Solo se permiten imágenes en formato <strong>.webp</strong>.</p>
+                        @error('path')
+                            <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
+                        @enderror
+                    </div>
+    
+                    <div class="mb-5 col-span-1">
+                        <label for="alt" class="block mb-2 text-sm font-medium text-gray-900">Alt:</label>
+                        <input id="alt" type="text" name="alt" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" placeholder="Texto alternativo">
+                    </div>
+    
+                    <div class="mb-5 col-span-4">
+                        <button type="submit" class="px-4 py-2 bg-green-500 text-white rounded hover:bg-green-600 transition">Enviar</button>
+                    </div>
+                </form>
             </div>
+        </div>
     </div>
+    
 
     <div class="py-12">
         @if($imgs)

@@ -17,8 +17,10 @@ class ImgController extends Controller
     {
         $request->validate([
             'name' => 'required',
-            'path' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
+            'path' => 'required|image|mimes:webp|max:2048',
             'alt' => 'nullable|string|max:255',
+        ], [
+            'path.mimes' => 'Solo se permiten imágenes en formato .webp.',
         ]);
 
         // Almacenar la imagen
