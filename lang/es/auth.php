@@ -20,7 +20,7 @@ return [
     'register' => 'Registrar',
     'email' => 'Correo electrónico',
     'password_confirmation' => 'Confirmar contraseña',
-    'remember_me' => 'Recuérdame',
+    'Remember me' => 'Recuérdame',
     'forgot_password' => '¿Olvidaste tu contraseña?',
     'reset_password' => 'Restablecer contraseña',
     'send_reset_link' => 'Enviar enlace de restablecimiento',

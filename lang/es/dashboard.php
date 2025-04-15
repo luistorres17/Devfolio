@@ -11,6 +11,5 @@ return [
     |
     */
 
-    'img hero' => 'imagen hero',
-
+    
 ];
