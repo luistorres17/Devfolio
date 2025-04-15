@@ -45,16 +45,16 @@
                 <div class="mr-auto place-self-center lg:col-span-7">
                     <h1 class="max-w-2xl mb-4 text-4xl font-extrabold tracking-tight leading-none md:text-5xl xl:text-6xl dark:text-white">
                         @if($hero)
-                            Hola soy {{ $user->name }} 
+                            Hola soy {{ $user->name }}
                         @else
-                            sin datos en la tabla de la db
+                            sin datos en la db
                         @endif
                     </h1>
                     <p class="max-w-2xl mb-6 font-light text-gray-500 lg:mb-8 md:text-lg lg:text-xl dark:text-gray-400">
                         @if($hero)
                             {{ $hero->welcome_text }}
                         @else
-                            sin datos en la tabla de la db
+                            sin datos en la db
                         @endif
                     </p>
                     <a href="#proyectos" class="inline-flex items-center justify-center px-5 py-3 mr-3 text-base font-medium text-center text-white rounded-lg bg-primary-700 hover:bg-primary-800 focus:ring-4 focus:ring-primary-300 dark:focus:ring-primary-900">
@@ -63,22 +63,28 @@
                     </a>
                     <a href="#contacto" class="inline-flex items-center justify-center px-5 py-3 text-base font-medium text-center text-gray-900 border border-gray-300 rounded-lg hover:bg-gray-100 focus:ring-4 focus:ring-gray-100 dark:text-white dark:border-gray-700 dark:hover:bg-gray-700 dark:focus:ring-gray-800">
                         Contactame
-                    </a> 
+                    </a>
                 </div>
                 <div class="hidden lg:mt-0 lg:col-span-5 lg:flex">
-                    <div id="gallery" class="relative w-full" data-carousel="slide">
-                        <!-- Carousel wrapper -->
+                    <div id="default-carousel" class="relative w-full" data-carousel="slide">
                         <div class="relative h-56 overflow-hidden rounded-lg md:h-96">
-                            <!-- Item 1 -->
-                            
                             @foreach ($imgs as $img)
-                                <div class="relative h-56 overflow-hidden rounded-lg md:h-96" data-carousel-item>
-                                    <img src="{{ asset('storage/landing/' . $img->path) }}" alt="{{$img -> alt}}" class="absolute block w-full h-full transition-transform duration-700 ease-in-out" alt="{{ $img->alt }}">
+                                <div class="hidden duration-700 ease-in-out" data-carousel-item>
+                                    <img src="{{ asset('storage/landing/' . $img->path) }}" class="absolute block w-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2" alt="{{$img -> alt}}">
                                 </div>
                             @endforeach
-                            
                         </div>
-                        <!-- Slider controls -->
+                        <div class="absolute z-30 flex -translate-x-1/2 bottom-5 left-1/2 space-x-3 rtl:space-x-reverse">
+                            @foreach ($imgs as $index => $img)
+                                <button
+                                    type="button"
+                                    class="w-3 h-3 rounded-full {{ $loop->first ? 'bg-white' : 'bg-gray-400' }}"
+                                    aria-current="{{ $loop->first ? 'true' : 'false' }}"
+                                    aria-label="Slide {{ $loop->iteration }}"
+                                    data-carousel-slide-to="{{ $index }}">
+                                </button>
+                            @endforeach
+                        </div>
                         <button type="button" class="absolute top-0 start-0 z-30 flex items-center justify-center h-full px-4 cursor-pointer group focus:outline-none" data-carousel-prev>
                             <span class="inline-flex items-center justify-center w-10 h-10 rounded-full bg-white/30 dark:bg-gray-800/30 group-hover:bg-white/50 dark:group-hover:bg-gray-800/60 group-focus:ring-4 group-focus:ring-white dark:group-focus:ring-gray-800/70 group-focus:outline-none">
                                 <svg class="w-4 h-4 text-white dark:text-gray-800 rtl:rotate-180" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 6 10">
@@ -96,92 +102,105 @@
                             </span>
                         </button>
                     </div>
-                </div>                
+                            
+                </div>
             </div>
         </section>
 
         <section class="bg-white dark:bg-gray-900 h-screen flex justify-center items-center" id="quiensoy">
-    <div class="max-w-screen-md h-full px-4 py-8 mx-auto flex flex-col justify-center items-center text-center reveal">
-        <h2 class="mb-4 text-4xl tracking-tight font-extrabold text-gray-900 dark:text-white">
-            Quién Soy
-        </h2>
+            <div class="max-w-screen-md h-full px-4 py-8 mx-auto flex flex-col justify-center items-center text-center reveal">
+                <h2 class="mb-4 text-4xl tracking-tight font-extrabold text-gray-900 dark:text-white">
+                    Quién Soy
+                </h2>
 
-        <p class="text-lg text-gray-600 mb-8 text-justify">
-            @if($abouts)
-                {{ $abouts->descripcion }}
-            @else
-                No datos en la tabla de la db
-            @endif
-        </p>
-
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-8 w-full">
-            <div>
-                <h3 class="text-2xl font-semibold text-gray-800 mb-2">
-                    Experiencia
-                </h3>
-                <p class="text-gray-600 text-justify">
+                <p class="text-lg text-gray-600 mb-8 text-justify">
                     @if($abouts)
-                        {{ $abouts->experiencia }}
+                        {{ $abouts->descripcion }}
                     @else
-                        No datos en la tabla de la db
+                        sin datos en la db
                     @endif
                 </p>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8 w-full">
+                    <div>
+                        <h3 class="text-2xl font-semibold text-gray-800 mb-2">
+                            Experiencia
+                        </h3>
+                        <p class="text-gray-600 text-justify">
+                            @if($abouts)
+                                {{ $abouts->experiencia }}
+                            @else
+                            <div class="max-w-screen-md h-full px-4 py-8 mx-auto flex flex-col justify-center items-center text-center reveal">
+                                <h2 class="mb-4 text-4xl tracking-tight font-extrabold text-gray-900 dark:text-white">
+                                    Quién Soy
+                                </h2>
+                        
+                                <p class="text-lg text-gray-600 mb-8 text-justify">
+                                    @if($abouts)
+                                        {{ $abouts->descripcion }}
+                                    @else
+                                        sin datos en la db
+                                    @endif
+                                </p>
+                            sin datos en la db 
+                            @endif
+                        </p>
+                    </div>
+
+                    <div>
+                        <h3 class="text-2xl font-semibold text-gray-800 mb-2">
+                            Mis perfiles de Contacto
+                        </h3>
+                        <ul class="list-disc pl-5 space-y-2 text-gray-600 text-justify ">
+                            <li>
+                                @if($abouts)
+                                    <a href="{{ $abouts->github }}" target="_blank" class="text-blue-600 dark:text-blue-500 hover:underline">Github</a>
+                                @else
+                                    sin datos en la db
+                                @endif
+                            </li>
+                            <li>
+                                @if($abouts)
+                                    <a href="{{ $abouts->linkedin }}" target="_blank" class="text-blue-600 dark:text-blue-500 hover:underline">Linkedin</a>
+                                @else
+                                    sin datos en la db
+                                @endif
+                            </li>
+                        </ul>
+                    </div>
+                </div>
             </div>
+        </section>
 
-            <div>
-                <h3 class="text-2xl font-semibold text-gray-800 mb-2">
-                    Mis perfiles de Contacto
-                </h3>
-                <ul class="list-disc pl-5 space-y-2 text-gray-600 text-justify" ">
-                    <li>
-                        @if($abouts)
-                            <a href="{{ $abouts->github }}" target="_blank" class="text-blue-600 dark:text-blue-500 hover:underline">Github</a>
-                        @else
-                            No datos en la tabla de la db
-                        @endif
-                    </li>
-                    <li>
-                        @if($abouts)
-                            <a href="{{ $abouts->linkedin }}" target="_blank" class="text-blue-600 dark:text-blue-500 hover:underline">Linkedin</a>
-                        @else
-                            No datos en la tabla de la db
-                        @endif
-                    </li>
-                </ul>
+
+        <section class="bg-white dark:bg-gray-900 h-screen flex justify-center items-center" id="proyectos">
+            <div class="max-w-screen-md h-full px-4 py-8 mx-auto flex flex-col justify-center items-center text-center reveal">
+                <h2 class="mb-4 text-4xl tracking-tight font-extrabold text-gray-900 dark:text-white">
+                    Proyectos
+                </h2>
+                <ol class="relative border-s border-gray-200 dark:border-gray-700">
+                    @if($projects)
+                        @foreach ($projects as $project)
+                            <li class="mb-10 ms-4">
+                                <div class="absolute w-3 h-3 bg-gray-200 rounded-full mt-1.5 -start-1.5 border border-white dark:border-gray-900 dark:bg-gray-700"></div>
+                                <time class="mb-1 text-sm font-normal leading-none text-gray-400 dark:text-gray-500">{{ $project->fecha_realizacion }}</time>
+                                <h3 class="text-lg font-semibold text-gray-900 dark:text-white text-justify">{{ $project->nameProject }}</h3>
+                                <p class="text-base font-normal text-gray-500 dark:text-gray-400 text-justify">{{ $project->descripcion }}</p>
+                                <!-- imagen -->
+                                <div class="flex items-center justify-center">
+                                    <img src="{{ $project->image ? asset('storage/' . $project->image) : asset('images/default.png') }}" alt="{{ $project->nameProject }}" class="w-20 h-20 rounded-full object-cover">
+                                </div>
+                                <a href="{{ $project->link_url }}" target="_blank" class="mt-4 text-sm font-semibold text-blue-600 dark:text-blue-500 hover:underline">Ver Proyecto</a>
+                            </li>
+                        @endforeach
+                    @else
+                        <p> sin datos en la tabla de la db</p>
+                    @endif
+                </ol>
             </div>
-        </div>
-    </div>
-</section>
+        </section>
 
 
-<section class="bg-white dark:bg-gray-900 h-screen flex justify-center items-center" id="proyectos">
-    <div class="max-w-screen-md h-full px-4 py-8 mx-auto flex flex-col justify-center items-center text-center reveal">
-        <h2 class="mb-4 text-4xl tracking-tight font-extrabold text-gray-900 dark:text-white">
-            Proyectos
-        </h2>
-        <ol class="relative border-s border-gray-200 dark:border-gray-700">
-            @if($projects)
-                @foreach ($projects as $project)                  
-                    <li class="mb-10 ms-4">
-                        <div class="absolute w-3 h-3 bg-gray-200 rounded-full mt-1.5 -start-1.5 border border-white dark:border-gray-900 dark:bg-gray-700"></div>
-                        <time class="mb-1 text-sm font-normal leading-none text-gray-400 dark:text-gray-500">{{ $project->fecha_realizacion }}</time>
-                        <h3 class="text-lg font-semibold text-gray-900 dark:text-white text-justify">{{ $project->nameProject }}</h3>
-                        <p class="text-base font-normal text-gray-500 dark:text-gray-400 text-justify">{{ $project->descripcion }}</p>
-                        <!-- imagen -->
-                        <div class="flex items-center justify-center">
-                            <img src="{{ $project->image ? asset('storage/' . $project->image) : asset('images/default.png') }}" alt="{{ $project->nameProject }}" class="w-20 h-20 rounded-full object-cover">
-                        </div>
-                        <a href="{{ $project->link_url }}" target="_blank" class="mt-4 text-sm font-semibold text-blue-600 dark:text-blue-500 hover:underline">Ver Proyecto</a>
-                    </li>
-                @endforeach
-            @else
-                <p> sin datos en la tabla de la db</p>
-            @endif
-        </ol>
-    </div>
-</section>
-
-        
         <section class="bg-white dark:bg-gray-900 h-screen " id ="contacto" >
             <div class="max-w-screen-xl h-full px-4 py-8 mx-auto lg:gap-8 xl:gap-0 lg:py-16 lg:grid-cols-12 items-center reveal">
                 <h2 class="mb-4 text-4xl tracking-tight font-extrabold text-center text-gray-900 dark:text-white">Contactame</h2>
