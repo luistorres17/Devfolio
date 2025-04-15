@@ -9,6 +9,8 @@ use App\Http\Controllers\ContactController;
 use App\Http\Controllers\PublicController;
 use App\Http\Controllers\HeroController;
 use App\Http\Controllers\ImgController;
+use App\Http\Controllers\InstallController;
+
 
 Route::get('/', function () {
     return view('home');
@@ -40,4 +42,13 @@ Route::middleware('auth')->group(function () {
     Route::delete('/imghero/{id}', [ImgController::class, 'destroy'])->name('imghero.destroy');
 
 });
+
+// Estas rutas NO deben estar bajo el middleware CheckInstallation
+Route::get('/install', fn () => redirect('/install/step1'));
+Route::get('/install/step1', [InstallController::class, 'step1'])->name('install.step1');
+Route::post('/install', [InstallController::class, 'submitStep1'])->name('install.submitStep1');
+
+
+
+
 require __DIR__.'/auth.php';
