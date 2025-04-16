@@ -130,18 +130,6 @@
                             @if($abouts)
                                 {{ $abouts->experiencia }}
                             @else
-                            <div class="max-w-screen-md h-full px-4 py-8 mx-auto flex flex-col justify-center items-center text-center reveal">
-                                <h2 class="mb-4 text-4xl tracking-tight font-extrabold text-gray-900 dark:text-white">
-                                    Quién Soy
-                                </h2>
-                        
-                                <p class="text-lg text-gray-600 mb-8 text-justify">
-                                    @if($abouts)
-                                        {{ $abouts->descripcion }}
-                                    @else
-                                        sin datos en la db
-                                    @endif
-                                </p>
                             sin datos en la db 
                             @endif
                         </p>

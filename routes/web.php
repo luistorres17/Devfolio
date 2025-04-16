@@ -48,6 +48,12 @@ Route::get('/install', fn () => redirect('/install/step1'));
 Route::get('/install/step1', [InstallController::class, 'step1'])->name('install.step1');
 Route::post('/install', [InstallController::class, 'submitStep1'])->name('install.submitStep1');
 
+Route::get('/install/step2', [InstallController::class, 'step2'])->name('install.step2');
+Route::post('/install/step2', [InstallController::class, 'submitStep2'])->name('install.submitStep2');
+
+Route::get('/install/step3', [InstallController::class, 'step3'])->name('install.step3');
+Route::post('/install/step3', [InstallController::class, 'submitStep3'])->name('install.submitStep3');
+
 
 
 
