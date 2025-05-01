@@ -4,6 +4,7 @@ use Illuminate\Foundation\Application;
 use Illuminate\Foundation\Configuration\Exceptions;
 use Illuminate\Foundation\Configuration\Middleware;
 use App\Http\Middleware\TrackVisits; // Importa tu middleware
+use App\Http\Middleware\CheckInstallation;
 return Application::configure(basePath: dirname(__DIR__))
     ->withRouting(
         web: __DIR__.'/../routes/web.php',
@@ -13,6 +14,7 @@ return Application::configure(basePath: dirname(__DIR__))
     ->withMiddleware(function (Middleware $middleware) {
         //
         //$middleware->append(TrackVisits::class); deshabilitado
+        $middleware->append(CheckInstallation::class);
     })
     ->withExceptions(function (Exceptions $exceptions) {
         //
