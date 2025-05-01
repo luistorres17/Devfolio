@@ -186,3 +186,7 @@ Proyecto desarrollado por **Luis Fernando** 🚀
 ¡Gracias por apoyar este repositorio!
 
 ![Reaver](https://media.tenor.com/zZFdvazBM_YAAAAM/reaver-starcraft.gif)
+
+## Licencia
+
+Este proyecto está licenciado bajo los términos de la [Licencia Pública General GNU v3](LICENSE).
