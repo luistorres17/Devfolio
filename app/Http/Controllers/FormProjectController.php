@@ -9,16 +9,16 @@ class FormProjectController extends Controller
 {
     public function index()
     {
-        $formprojects = FormProject::all();
+        $formprojects = FormProject::orderBy('fecha_realizacion', 'desc')->get();
         
         return view('formulario-project', compact('formprojects'));
     }
-    public function indexDashboardProjects()
+    /*public function indexDashboardProjects()
     {
         // Retorna la vista dashboard con el primer registro
         $formprojects_dashboard = FormAbout::all();
         return view('dashboard', compact('formprojects_dashboard'));
-    }
+    }*/
     
     public function store(Request $request)
     {

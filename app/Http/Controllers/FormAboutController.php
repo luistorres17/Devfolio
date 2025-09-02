@@ -14,12 +14,12 @@ class FormAboutController extends Controller
         return view('formulario-about', compact('formabouts'));
     }
 
-    public function indexDashboard()
+    /*public function indexDashboard()
     {
         // Retorna la vista dashboard con el primer registro
         $formabouts_dashboard = FormAbout::first();
         return view('dashboard', compact('formabouts_dashboard'));
-    }
+    }*/
 
     public function store(Request $request)
     {

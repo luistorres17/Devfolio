@@ -15,7 +15,7 @@ class PublicController extends Controller
 {
     public function index()
     {
-        $projects = FormProject::all();
+        $projects = FormProject::orderBy('fecha_realizacion', 'desc')->get(); //ordenar por fecha descendente orderBy ('fecha_realizacion', 'desc')
         $abouts = FormAbout::first();
         $user = user::first();
         $imgs = ImgPublic::all();
